@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+            background: url('./IMG_20241201_141916.jpg') no-repeat center/cover;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .container {
+            max-width: 500px;
+            padding: 20px;
+            background: black;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        h1 {
+            font-size: 24px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid white;
+            width: 0;
+            animation: typing 3s steps(30, end) forwards, blink 0.5s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        .heart {
+            font-size: 40px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .heart:hover {
+            transform: scale(1.2);
+        }
+        #surprise {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        #teddy {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 80px;
+            animation: blast 2s ease-in-out forwards;
+        }
+        @keyframes blast {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(2.5);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="message"></h1>
+        <div class="heart" onclick="showSurprise()">❤️</div>
+        <p id="surprise">Click the heart to see a surprise!</p>
+    </div>
+    <div id="teddy">🧸</div>
+    
+    <script>
+        const message = "Happy Valentine's Day, My Love! 💕";
+        let i = 0;
+        function typeMessage() {
+            if (i < message.length) {
+                document.getElementById("message").innerHTML += message.charAt(i);
+                i++;
+                setTimeout(typeMessage, 100);
+            }
+        }
+
+        const messages = [
+            "Hey",
+            "Listen",
+            "Don't skip it",
+            "You're my everything! 💖",
+            "You're the reason to smile every day! 😊",
+            "I love you more than words can say! ❤️",
+            "With you, every moment is special! ✨",
+            "You're my heart, my soul, my world! 🌍💕",
+            "And Finally",
+            "Eagerly waiting for our wedding BUJII THALLI",
+            "Nv navvuthu nen happy ga undela chudu",
+            "miguthavi anni nen chusukuntta",
+            "Anthey nka m ledhu",
+        ];
+        let index = 0;
+
+        function showSurprise() {
+            if (messages[index] === "Anthey nka m ledhu") {
+                document.getElementById("teddy").style.display = "block";
+            }
+            document.getElementById("surprise").textContent = messages[index];
+            index = (index + 1) % messages.length;
+        }
+
+        window.onload = typeMessage;
+    </script>
+</body>
+</html>
